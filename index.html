@@ -6,19 +6,32 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
     <body>
-        <section class="player" id="player1">
-            <h1>PLAYER 1</h1>
-            <span class="score" id="score1"></span>
-        </section>
-        <section id="area">
-             <section id="board">
-                 
-             </section>
-        </section>
-        <section class="player" id="player1">
-            <h1>PLAYER 1</h1>
-            <span class="score" id="score2"></span>
-        </section>
+        <div class="container">
+            <section class="player" id="player1">
+                <h1 id="p1">PLAYER 1</h1>
+                <span class="score" id="score1">Score: 0</span>
+                <br>
+                <button class="btn" id="p1Btn" onclick="resign(0)">RESIGN</button>
+                <button class="btn" id="p1Rest" onclick="restart()">RESTART</button>
+            </section>
+            <section class="area" id="overlay">
+                <section class="area" id="area">
+                </section>
+            </section>
+            <section class="player" id="player2">
+                <h1 id="p2">PLAYER 2</h1>
+                <span class="score" id="score2">Score: 0</span>
+                <br>
+                <button class="btn" id="p2Btn" onclick="resign(1)">RESIGN</button>
+                <button class="btn" id="p2Rest" onclick="restart()">RESTART</button>
+            </section>
+        </div>
     </body>
+    <section class="end"></section>
 <script src="script.js"></script>
+<script type="x-template" id="banner-template">
+    <div class="banner banner-top alert-primary active" role="alert">
+        LA DE DAAAAAAA
+    </div>
+</script>
 </html>
