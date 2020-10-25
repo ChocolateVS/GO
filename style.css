@@ -93,13 +93,21 @@ h1 {
   font-family:cursive;
 }
 
-#p1Btn, #p1Rest{
+#p1Btn, #p1Rest, #p1Pass{
   background-color:white;
   color:black;
 }
-#p2Btn, #p2Rest {
+#p2Btn, #p2Rest, #p2Pass {
   background-color:black;
   color:white;
+}
+
+#p2Btn:hover, #p1Btn:hover {
+    background-color: darkred;
+}
+
+#p2Pass:hover, #p1Pass:hover {
+    background-color: darkseagreen;
 }
 
 .end {

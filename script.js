@@ -1,9 +1,9 @@
 id("p1Rest").style.display = "none";
 id("p2Rest").style.display = "none";
-let turn = "white";
+let turn = "black";
 let used = [];
 let state = 0;
-id("p1").style.borderBottom = "1px solid black";
+id("p2").style.borderBottom = "1px solid white";
 function id(id) {return document.getElementById(id)}
 function makeBoard() {
     for (i = 0; i < 19; i++) {
@@ -122,4 +122,12 @@ function restart() {
     id("cr2").innerHTML = "";
 }
 
+function pass(who) {
+    if (who == 0) {
+        turn == "black";
+    }
+    else {
+        who == "white";
+    }
+}
 //var simpleAlert = document.querySelector(".simple-alert"); simpleAlert.addEventListener("click", function (e) { e.preventDefault(); injectTemplate(getBannerTemplate()); var btnClose = document.querySelector(".banner-close"); btnClose.addEventListener("click", function (closeEvt) { var banner = document.querySelector(".banner"); banner.parentNode.removeChild(banner); }); }); 
