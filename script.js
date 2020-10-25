@@ -1,5 +1,6 @@
 let valid = false;
-let boardsize 
+let boardsize;
+let passes = 0;
 while (!valid) {
     boardsize = prompt("Please enter a board size (7, 9, 11, 13, 17, 19)");
     if (boardsize <= 19 && boardsize >= 7 && boardsize % 2 == 1) {
@@ -77,6 +78,7 @@ makeBoard();
 
 function place(x, y) {
     if (state == 0) {
+        passes = 0;
         let go = true;
         used.forEach(element => {
             if (element == x + " " + y) {
@@ -118,11 +120,24 @@ function resign(who) {
             id("p1Rest").style.visibility = "visible";            
             id("p2Rest").style.visibility = "visible";
         }
-        else {
+        else if (who == 0) {
             id("cr2").innerHTML = "👑";
             alert("Player 1 has resigned, Player 2 is Victorius!!!");
             id("p1Rest").style.visibility = "visible";            
             id("p2Rest").style.visibility = "visible";
+        }
+        else {
+            let winner = check();
+            if (winner != "tie") {
+                alert("The Game Has ended " + winner + " is victorious");
+            }
+            else {
+                alert("The game has ended in a tie");
+                id("cr1").innerHTML = "👑";
+                id("cr2").innerHTML = "👑";
+                id("p1Rest").style.visibility = "visible";            
+                id("p2Rest").style.visibility = "visible";
+            }
         }
         state = 1;
     }
@@ -144,20 +159,30 @@ function restart() {
 }
 
 function pass(who) {
-    if (who == 0 && turn == "black") {
-        turn = "white";
-        id("p2").style.borderBottom = "1px solid black";
-        id("p1").style.borderBottom = "none";
-        id("p1Pass").style.visibility = "hidden";
-        id("p2Pass").style.visibility = "visible";
-        
+    passes++;
+    if (passes == 2) {
+        resign(2);
     }
-    else if (who == 1 && turn == "white") {
-        turn = "black";
-        id("p1").style.borderBottom = "1px solid white";
-        id("p2").style.borderBottom = "none";
-        id("p2Pass").style.visibility = "hidden";
-        id("p1Pass").style.visibility = "visible";
+    else {
+        if (who == 0 && turn == "black") {
+            turn = "white";
+            id("p2").style.borderBottom = "1px solid black";
+            id("p1").style.borderBottom = "none";
+            id("p1Pass").style.visibility = "hidden";
+            id("p2Pass").style.visibility = "visible";
+
+        }
+        else if (who == 1 && turn == "white") {
+            turn = "black";
+            id("p1").style.borderBottom = "1px solid white";
+            id("p2").style.borderBottom = "none";
+            id("p2Pass").style.visibility = "hidden";
+            id("p1Pass").style.visibility = "visible";
+        }
     }
+}
+
+function check() {
+    return "tie";
 }
 //var simpleAlert = document.querySelector(".simple-alert"); simpleAlert.addEventListener("click", function (e) { e.preventDefault(); injectTemplate(getBannerTemplate()); var btnClose = document.querySelector(".banner-close"); btnClose.addEventListener("click", function (closeEvt) { var banner = document.querySelector(".banner"); banner.parentNode.removeChild(banner); }); }); 
