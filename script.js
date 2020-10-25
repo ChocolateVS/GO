@@ -95,13 +95,13 @@ function resign(who) {
         id("p1Btn").style.display = "none";
         id("p2Btn").style.display = "none";
         if (who == 1) {
-            id("p1").innerHTML = "PLAYER 1 👑";
+            id("cr1").innerHTML = "👑";
             alert("Player 2 has resigned, Player 1 is Victorius!!!");
             id("p1Rest").style.display = "block";            
             id("p2Rest").style.display = "block";
         }
         else {
-            id("p2").innerHTML = "PLAYER 2 👑";
+            id("cr2").innerHTML = "👑";
             alert("Player 1 has resigned, Player 2 is Victorius!!!");
             id("p1Rest").style.display = "block";            
             id("p2Rest").style.display = "block";
@@ -118,8 +118,8 @@ function restart() {
     id("p2Btn").style.display = "block";
     id("p1Rest").style.display = "none";            
     id("p2Rest").style.display = "none";
-    id("p1").innerHTML = "PLAYER 1";
-    id("p2").innerHTML = "PLAYER 2";
+    id("cr1").innerHTML = "";
+    id("cr2").innerHTML = "";
 }
 
-var simpleAlert = document.querySelector(".simple-alert"); simpleAlert.addEventListener("click", function (e) { e.preventDefault(); injectTemplate(getBannerTemplate()); var btnClose = document.querySelector(".banner-close"); btnClose.addEventListener("click", function (closeEvt) { var banner = document.querySelector(".banner"); banner.parentNode.removeChild(banner); }); }); 
+//var simpleAlert = document.querySelector(".simple-alert"); simpleAlert.addEventListener("click", function (e) { e.preventDefault(); injectTemplate(getBannerTemplate()); var btnClose = document.querySelector(".banner-close"); btnClose.addEventListener("click", function (closeEvt) { var banner = document.querySelector(".banner"); banner.parentNode.removeChild(banner); }); }); 
