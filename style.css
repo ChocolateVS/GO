@@ -75,10 +75,10 @@ h1 {
     align-items:center;
     background-color:burlywood;
 }
-#player1 {
+#player2 {
     color:white;
 }
-#player2 {
+#player1 {
     color:black;
 }
 
@@ -93,11 +93,11 @@ h1 {
   font-family:cursive;
 }
 
-#p1Btn, #p1Rest, #p1Pass{
+#p2Btn, #p2Rest, #p2Pass{
   background-color:white;
   color:black;
 }
-#p2Btn, #p2Rest, #p2Pass {
+#p1Btn, #p1Rest, #p1Pass {
   background-color:black;
   color:white;
 }

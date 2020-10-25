@@ -1,17 +1,29 @@
-id("p1Rest").style.display = "none";
-id("p2Rest").style.display = "none";
+let valid = false;
+let boardsize 
+while (!valid) {
+    boardsize = prompt("Please enter a board size (7, 9, 11, 13, 17, 19)");
+    if (boardsize <= 19 && boardsize >= 7 && boardsize % 2 == 1) {
+        valid = true;
+    }
+}
+    
+    
+
+id("p1Rest").style.visibility = "hidden";
+id("p2Rest").style.visibility = "hidden";
+id("p2Pass").style.visibility = "hidden";
 let turn = "black";
 let used = [];
 let state = 0;
-id("p2").style.borderBottom = "1px solid white";
+id("p1").style.borderBottom = "1px solid white";
 function id(id) {return document.getElementById(id)}
 function makeBoard() {
-    for (i = 0; i < 19; i++) {
+    for (i = 0; i < boardsize; i++) {
         let row = document.createElement("div");
         row.id = "row" + i;
         row.setAttribute("class", "row");
         
-        for (j = 0; j < 19; j++) {
+        for (j = 0; j < boardsize; j++) {
             let cell = document.createElement("span");
             let input = document.createElement("button");
             let img = document.createElement("img");
@@ -77,13 +89,17 @@ function place(x, y) {
             id(x + " " + y).style.backgroundColor = turn;
             if (turn == "white") {
                 turn = "black";
-                id("p2").style.borderBottom = "1px solid white";
-                id("p1").style.borderBottom = "none";
+                id("p1Pass").style.visibility = "visible";
+                id("p2Pass").style.visibility = "hidden";
+                id("p1").style.borderBottom = "1px solid white";
+                id("p2").style.borderBottom = "none";
             }
             else {
                 turn = "white";
-                id("p1").style.borderBottom = "1px solid black";
-                id("p2").style.borderBottom = "none";
+                id("p1Pass").style.visibility = "hidden";
+                id("p2Pass").style.visibility = "visible";
+                id("p2").style.borderBottom = "1px solid black";
+                id("p1").style.borderBottom = "none";
             }
             used.push(x + " " + y)
         }
@@ -92,19 +108,21 @@ function place(x, y) {
 
 function resign(who) {
     if (state == 0) {
-        id("p1Btn").style.display = "none";
-        id("p2Btn").style.display = "none";
+        id("p1Btn").style.visibility = "hidden";
+        id("p2Btn").style.visibility = "hidden";
+        id("p1Pass").style.visibility = "hidden";
+        id("p2Pass").style.visibility = "hidden";
         if (who == 1) {
             id("cr1").innerHTML = "👑";
             alert("Player 2 has resigned, Player 1 is Victorius!!!");
-            id("p1Rest").style.display = "block";            
-            id("p2Rest").style.display = "block";
+            id("p1Rest").style.visibility = "visible";            
+            id("p2Rest").style.visibility = "visible";
         }
         else {
             id("cr2").innerHTML = "👑";
             alert("Player 1 has resigned, Player 2 is Victorius!!!");
-            id("p1Rest").style.display = "block";            
-            id("p2Rest").style.display = "block";
+            id("p1Rest").style.visibility = "visible";            
+            id("p2Rest").style.visibility = "visible";
         }
         state = 1;
     }
@@ -114,20 +132,32 @@ function restart() {
     state = 0;
     area.innerHTML = "";
     makeBoard();
-    id("p1Btn").style.display = "block";
-    id("p2Btn").style.display = "block";
-    id("p1Rest").style.display = "none";            
-    id("p2Rest").style.display = "none";
+    id("p1Btn").style.visibility = "visible";
+    id("p2Btn").style.visibility = "visible";
+    id("p1Rest").style.visibility = "hidden";            
+    id("p2Rest").style.visibility = "hidden";
     id("cr1").innerHTML = "";
     id("cr2").innerHTML = "";
+    id("p1").style.borderBottom = "1px solid white";
+    id("p2").style.borderBottom = "none";
+    id("p2Pass").style.visibility = "hidden";
 }
 
 function pass(who) {
-    if (who == 0) {
-        turn == "black";
+    if (who == 0 && turn == "black") {
+        turn = "white";
+        id("p2").style.borderBottom = "1px solid black";
+        id("p1").style.borderBottom = "none";
+        id("p1Pass").style.visibility = "hidden";
+        id("p2Pass").style.visibility = "visible";
+        
     }
-    else {
-        who == "white";
+    else if (who == 1 && turn == "white") {
+        turn = "black";
+        id("p1").style.borderBottom = "1px solid white";
+        id("p2").style.borderBottom = "none";
+        id("p2Pass").style.visibility = "hidden";
+        id("p1Pass").style.visibility = "visible";
     }
 }
 //var simpleAlert = document.querySelector(".simple-alert"); simpleAlert.addEventListener("click", function (e) { e.preventDefault(); injectTemplate(getBannerTemplate()); var btnClose = document.querySelector(".banner-close"); btnClose.addEventListener("click", function (closeEvt) { var banner = document.querySelector(".banner"); banner.parentNode.removeChild(banner); }); }); 
