@@ -10,19 +10,21 @@
             <section class="player" id="player1">
                 <h1 id="cr1"></h1>
                 <h1 id="p1">PLAYER 1</h1>
+                <span class="score" id="pris1">Prisoners: 0</span>
                 <span class="score" id="score1">Score: 0</span>
                 <br>
                 <button class="btn" id="p1Pass" onclick="pass(0)">PASS</button>
                 <button class="btn" id="p1Btn" onclick="resign(0)">RESIGN</button>
                 <button class="btn" id="p1Rest" onclick="restart()">RESTART</button>
             </section>
-            <section class="area" id="overlay">
+            <section oncontextmenu="return false;" class="area" id="overlay">
                 <section class="area" id="area">
                 </section>
             </section>
             <section class="player" id="player2">
                 <h1 id="cr2"></h1>
                 <h1 id="p2">PLAYER 2</h1>
+                <span class="score" id="pris2">Prisoners: 0</span>
                 <span class="score" id="score2">Score: 0</span>
                 <br>
                 <button class="btn" id="p2Pass" onclick="pass(1)">PASS</button>
